@@ -9,7 +9,7 @@ public class UserQuestionnaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "usr_id", nullable = false)
+    @JoinColumn(name = "usver_id", nullable = false)
     private User user;
     @ManyToOne
     @JoinColumn(name = "questionnaire_id", nullable = false)

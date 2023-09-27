@@ -16,7 +16,7 @@ public class QuestionnaireController {
     private QuestionnaireServiceImpl questionnaireServiceImpl;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createQuestionnaire(@RequestBody String text, @RequestBody TypeAnswer type) {
+    public ResponseEntity<?> createQuestionnaire(@RequestParam String text, @RequestParam TypeAnswer type) {
         Questionnaire newQuestionnaire = questionnaireServiceImpl.createQuestionnaire(text, type);
         return ResponseEntity.ok(newQuestionnaire);
     }
@@ -31,5 +31,14 @@ public class QuestionnaireController {
     public ResponseEntity<Questionnaire> getQuestionnaireById(@PathVariable Long id) {
         Questionnaire questionnaire = questionnaireServiceImpl.getQuestionnaireById(id);
         return ResponseEntity.ok(questionnaire);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteQuestionnaire(@PathVariable Long id) {
+        questionnaireServiceImpl.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestParam String title, @RequestParam TypeAnswer newType) {
+        return ResponseEntity.ok(questionnaireServiceImpl.update(id, title, newType));
     }
 }

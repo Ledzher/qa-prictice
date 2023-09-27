@@ -6,12 +6,14 @@ import com.example.qaprictice.entity.UserQuestionnaire;
 import com.example.qaprictice.repository.UserQuestionnaireRep;
 import com.example.qaprictice.service.UserQuestionnaireService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class UserQuestionnaireServiceImpl implements UserQuestionnaireService {
     @Autowired
     private UserQuestionnaireRep userQuestionnaireRep;
@@ -31,6 +33,5 @@ public class UserQuestionnaireServiceImpl implements UserQuestionnaireService {
         return userQuestionnaireRep.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("UserQuestionnaire not found with id: " + id));
     }
-
 
 }

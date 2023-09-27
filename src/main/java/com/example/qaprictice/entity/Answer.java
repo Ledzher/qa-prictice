@@ -2,6 +2,8 @@ package com.example.qaprictice.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "answer")
 public class Answer {

@@ -2,10 +2,9 @@ package com.example.qaprictice.controller;
 
 import com.example.qaprictice.entity.Answer;
 import com.example.qaprictice.entity.Question;
-import com.example.qaprictice.service.impl.AnswerServiceImpl;
-import com.example.qaprictice.service.impl.QuestionServiceImpl;
+import com.example.qaprictice.service.AnswerService;
+import com.example.qaprictice.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +14,12 @@ import java.util.List;
 @RequestMapping("/api/answers")
 public class AnswerController {
     @Autowired
-    private AnswerServiceImpl answerServiceImpl;
+    private AnswerService answerServiceImpl;
     @Autowired
-    private QuestionServiceImpl questionServiceImpl;
+    private QuestionService questionServiceImpl;
 
     @PostMapping
-    public ResponseEntity<?> createAnswer(@RequestBody String text, @RequestBody Question question) {
+    public ResponseEntity<?> createAnswer(@RequestParam String text, @RequestParam Long question) {
         Answer answer = answerServiceImpl.createAnswer(text, question);
         return ResponseEntity.ok(answer);
     }

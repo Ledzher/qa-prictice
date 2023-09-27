@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -31,5 +32,18 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     public Questionnaire getQuestionnaireById(Long id) {
         return questionnaireRep.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Questionnaire not found with id: " + id));
+    }
+
+    @Override
+    public void delete(Long id) {
+        questionnaireRep.deleteById(id);
+    }
+
+    @Override
+    public Questionnaire update(Long id, String title, TypeAnswer newType) {
+        Questionnaire questionnaire = questionnaireRep.findById(id).orElseThrow(() -> new NoSuchElementException("Lol"));
+        questionnaire.setTitle(title);
+        questionnaire.setTypeAnswer(newType);
+        return questionnaire;
     }
 }

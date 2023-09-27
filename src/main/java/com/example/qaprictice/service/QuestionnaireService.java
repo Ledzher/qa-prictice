@@ -11,4 +11,8 @@ public interface QuestionnaireService {
     List<Questionnaire> getAllQuestionnaires();
 
     Questionnaire getQuestionnaireById(Long id);
+
+    void delete(Long id);
+
+    Questionnaire update(Long id, String title, TypeAnswer newType);
 }

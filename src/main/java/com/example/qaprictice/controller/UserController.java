@@ -17,7 +17,7 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @PostMapping("/create")
-    public  ResponseEntity<?> createUser(@RequestBody String name) {
+    public  ResponseEntity<?> createUser(@RequestParam String name) {
         User newUser = userServiceImpl.createUser(name);
         return ResponseEntity.ok(newUser);
     }
@@ -34,14 +34,14 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updatedUser = userServiceImpl.updateUser(id, user.getName());
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestParam String user) {
+        User updatedUser = userServiceImpl.updateUser(id, user);
         return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userServiceImpl.deleteUser(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
